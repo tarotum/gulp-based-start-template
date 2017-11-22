@@ -1,0 +1,71 @@
+@import "fonts";
+@import "libs";
+@import "vars";
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	&:before, &:after {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
+}
+*::-webkit-input-placeholder {
+	color: #9b9b9b;
+	opacity: 1;
+}
+*:-moz-placeholder {
+	color: #9b9b9b;
+	opacity: 1;
+}
+*::-moz-placeholder {
+	color: #9b9b9b;
+	opacity: 1;
+}
+*:-ms-input-placeholder {
+	color: #9b9b9b;
+	opacity: 1;
+}
+body input:focus:required:invalid,
+body textarea:focus:required:invalid {
+	color: #666;
+}
+body input:required:valid,
+body textarea:required:valid {
+	color: #666;
+}
+html {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizelegibility;
+}
+html {
+  box-sizing: border-box;
+  height: 100%;
+  margin: 0;
+}
+body {
+	font-size: 14px;
+	min-width: 320px;
+	position: relative;
+	line-height: 1.65;
+	font-family: $default-font;
+	overflow-x: hidden;
+	opacity: 1;
+	background-color: transparent;
+}
+.hidden-scroll {
+	overflow-y: hidden;
+}
+.img-responsive {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+/* start import header */
+@import '_layout/header';
+/* start import footer */
+@import '_layout/footer';
