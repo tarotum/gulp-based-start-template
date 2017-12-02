@@ -25,12 +25,12 @@ gulp.task('common-js', function() {
 
 gulp.task('js', function() {
 	return gulp.src([
-		'app/libs/jquery/dist/jquery.min.js',
+		'./node_modules/jquery/dist/jquery.min.js',
 		])
 	.pipe(concat('scripts.min.js'))
 	.pipe(sourcemaps.init())
 	.pipe(uglify()) // minify (optional)
-	.pipe(sourcemaps.write('./maps'))
+	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest('app/js'))
 });
 
@@ -57,7 +57,7 @@ gulp.task('sass', function() {
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
 	//.pipe(cleanCSS()) // (optional)
-	.pipe(sourcemaps.write('./maps'))
+	.pipe(sourcemaps.write('./'))
 	.pipe(gulp.dest('app/css'))
 	.pipe(browserSync.reload({stream: true}));
 });
@@ -86,10 +86,12 @@ gulp.task('build', ['removedist', 'sass', 'js'], function() {
 
 	var buildCss = gulp.src([
 		'app/css/main.min.css',
+		'app/css/main.min.css.map',
 		]).pipe(gulp.dest('dist/css'));
 
 	var buildJs = gulp.src([
 		'app/js/scripts.min.js',
+		'app/js/scripts.min.js.map',
 		]).pipe(gulp.dest('dist/js'));
 
 	var buildCommonJs = gulp.src([

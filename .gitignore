@@ -2,8 +2,8 @@
 /.git/
 /dist/
 /app/css/
-/app/js/maps/
 app/js/scripts.min.js
+app/js/scripts.min.js.map
 /**/*.psd
 /**/Thumbs.db
 /**/*.DS_Store
