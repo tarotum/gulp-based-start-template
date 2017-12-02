@@ -19,20 +19,24 @@ gulp.task('common-js', function() {
 		])
 	//.pipe(concat('common.min.js'))
 	//.pipe(uglify()) // minify (optional)
-	.pipe(gulp.dest('app/js'));
+	.pipe(gulp.dest('app/js'))
+	.pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('js', ['common-js'], function() {
+gulp.task('js', function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
-		'app/js/common.min.js', // Всегда в конце
 		])
 	.pipe(concat('scripts.min.js'))
 	.pipe(sourcemaps.init())
 	.pipe(uglify()) // minify (optional)
 	.pipe(sourcemaps.write('./maps'))
 	.pipe(gulp.dest('app/js'))
-	.pipe(browserSync.reload({stream: true}));
+});
+
+gulp.task('js-watch', ['js'], function (done) {
+    browserSync.reload();
+    done();
 });
 
 gulp.task('browser-sync', function() {
@@ -49,7 +53,7 @@ gulp.task('browser-sync', function() {
 gulp.task('sass', function() {
 	return gulp.src('app/sass/**/*.scss')
 	.pipe(sourcemaps.init())
-	.pipe(sass({outputStyle: 'expand'}).on("error", sass.logError))
+	.pipe(sass({outputStyle: 'compressed'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
 	//.pipe(cleanCSS()) // (optional)
@@ -58,11 +62,14 @@ gulp.task('sass', function() {
 	.pipe(browserSync.reload({stream: true}));
 });
 
-gulp.task('watch', ['sass', 'js', 'browser-sync'], function() {
+gulp.task('watch', ['sass', 'js', 'common-js', 'browser-sync'], function() {
 	gulp.watch('app/sass/**/*.scss', ['sass']);
-	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
+	gulp.watch('libs/**/*.js', ['js-watch']);
+	gulp.watch('app/js/common.js', ['common-js']);
 	gulp.watch('app/*.html', browserSync.reload);
 });
+
+// (optional)
 
 gulp.task('imagemin', function() {
 	return gulp.src('app/img/**/*')
@@ -70,7 +77,7 @@ gulp.task('imagemin', function() {
 	.pipe(gulp.dest('dist/img')); 
 });
 
-gulp.task('build', ['removedist', 'imagemin', 'sass', 'js'], function() {
+gulp.task('build', ['removedist', 'sass', 'js'], function() {
 
 	var buildFiles = gulp.src([
 		'app/*.html',
