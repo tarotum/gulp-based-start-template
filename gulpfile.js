@@ -25,7 +25,7 @@ gulp.task('common-js', function() {
 
 gulp.task('js', function() {
 	return gulp.src([
-		'./node_modules/jquery/dist/jquery.min.js',
+		'./app/libs/jquery/jquery-3.2.1.min.js',
 		])
 	.pipe(concat('scripts.min.js'))
 	.pipe(sourcemaps.init())
@@ -53,7 +53,7 @@ gulp.task('browser-sync', function() {
 gulp.task('sass', function() {
 	return gulp.src('app/sass/**/*.scss')
 	.pipe(sourcemaps.init())
-	.pipe(sass({outputStyle: 'compressed'}).on("error", notify.onError()))
+	.pipe(sass().on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
 	//.pipe(cleanCSS()) // (optional)
