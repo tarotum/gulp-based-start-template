@@ -1,25 +1,29 @@
 @import "fonts";
 @import "libs";
 @import "vars";
-
 * {
 	box-sizing: border-box;
-	&:before, &:after {
+	&:before,
+	&:after {
 		box-sizing: border-box;
 	}
 }
+
 *::-webkit-input-placeholder {
 	color: #9b9b9b;
 	opacity: 1;
 }
+
 *:-moz-placeholder {
 	color: #9b9b9b;
 	opacity: 1;
 }
+
 *::-moz-placeholder {
 	color: #9b9b9b;
 	opacity: 1;
 }
+
 *:-ms-input-placeholder {
 	color: #9b9b9b;
 	opacity: 1;
@@ -30,11 +34,13 @@ html {
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizelegibility;
 }
+
 html {
 	box-sizing: border-box;
 	height: 100%;
 	margin: 0;
 }
+
 body {
 	margin: 0;
 	padding: 0;
@@ -47,9 +53,11 @@ body {
 	opacity: 1;
 	background-color: transparent;
 }
+
 .hidden-scroll {
 	overflow-y: hidden;
 }
+
 .img-responsive {
 	display: block;
 	max-width: 100%;
@@ -57,6 +65,8 @@ body {
 }
 
 /* start import header */
+
 @import '_layout/header';
 /* start import footer */
+
 @import '_layout/footer';

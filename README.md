@@ -1,6 +1,7 @@
-# Front-end starter template Yarn
+# Simple HTML gulp based start-template
 
 Commands:
 
-* watch -  `yarn run start`
-* build -  `yarn run build`
+- watch - `yarn start`
+- build - `yarn build`
+- serve - `yarn serve`
